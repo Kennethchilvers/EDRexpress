@@ -2,7 +2,7 @@ let data = {};
 let currentNode = "start";
 
 window.onload = async () => {
-  data = await fetch("adventure.json").then(res => res.json());
+  data = await fetch("Content.json").then(res => res.json());
   document.getElementById("restart").onclick = () => loadNode("start");
   document.getElementById("search").oninput = searchNodes;
   loadNode(currentNode);
