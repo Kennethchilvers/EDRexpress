@@ -1,0 +1,26 @@
+{
+  "start": {
+    "question": "You wake up in a dark forest. What do you do?",
+    "keywords": ["forest", "start", "dark"],
+    "choices": {
+      "Explore the path": "explore",
+      "Climb a tree": "climb_tree"
+    }
+  },
+  "explore": {
+    "question": "You find a cave entrance.",
+    "keywords": ["cave", "explore"],
+    "choices": {
+      "Enter the cave": "enter_cave",
+      "Go back": "start"
+    }
+  },
+  "climb_tree": {
+    "question": "From the top, you see smoke in the distance.",
+    "keywords": ["tree", "smoke"],
+    "choices": {
+      "Head toward the smoke": "smoke_camp",
+      "Go back": "start"
+    }
+  }
+}
