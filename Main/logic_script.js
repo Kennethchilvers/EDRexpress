@@ -5,7 +5,7 @@ window.onload = async () => {
   data = await fetch("Content.json").then(res => res.json());
   document.getElementById("restart").onclick = () => loadNode("start");
   document.getElementById("search").oninput = searchNodes;
-  loadNode(currentNode);
+  loadNode("start");
 };
 
 function loadNode(nodeKey) {
