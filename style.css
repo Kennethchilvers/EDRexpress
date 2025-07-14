@@ -44,3 +44,19 @@ button {
   list-style: none;
   padding: 0;
 }
+.search-result {
+  padding: 5px;
+  background-color: #eee;
+  margin-bottom: 5px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.search-result:hover {
+  background-color: #ddd;
+}
+
+mark {
+  background-color: yellow;
+  font-weight: bold;
+}
