@@ -1,26 +1,31 @@
 {
   "start": {
-    "question": "You wake up in a dark forest. What do you do?",
-    "keywords": ["forest", "start", "dark"],
+    "question": "Where is Datto EDR reporting as not active?",
+    "keywords": ["inactive", "start", "EDR","RMM"],
     "choices": {
-      "Explore the path": "explore",
-      "Climb a tree": "climb_tree"
+      "Datto EDR": "EDR_showing_inactive",
+      "Datto RMM, it is Active in EDR": "RMM_showing_inactive"
     }
   },
-  "explore": {
-    "question": "You find a cave entrance.",
-    "keywords": ["cave", "explore"],
+  "EDR_showing_inactive": {
+    "question": "What status is the device showing in the edr portal?",
+    "keywords": ["active", "inactive","disabled"],
     "choices": {
-      "Enter the cave": "enter_cave",
+      "Inactive": "Inactive1",
+      "Disabled": "Disabled1",
+      "Isolated": "Isolated1",
+      "Stale": "Stale1",
       "Go back": "start"
     }
   },
-  "climb_tree": {
-    "question": "From the top, you see smoke in the distance.",
-    "keywords": ["tree", "smoke"],
+  "RMM_showing_inactive": {
+    "question": "If status in EDR is active but RMM is not active than this is a status mismatch. This is most likely due to the DattoEDR.json not updating properly. Have you checked the DattoEDR.json for a timestamp in the past 2 minutes?",
+    "keywords": [],
     "choices": {
-      "Head toward the smoke": "smoke_camp",
-      "Go back": "start"
+      "Yes, the timestamp is out of date": "out of date json",
+      "Yes, the timestamp is valid": "valid json",
+      "No, I dont know how to check the json": "how to json",
+      "Go back":"start"
     }
   }
 }

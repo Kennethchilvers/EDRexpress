@@ -3,18 +3,25 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>EDRepress</title>
+  <title>EDRexpress</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div id="app">
-    <h1>EDRepress</h1>
-    <input type="text" id="search" placeholder="Search..." />
-    <div id="search-results"></div>
-    <div id="question"></div>
-    <div id="choices"></div>
+  <div id="container">
+    </div>
+      <div id="history">
+      <h2>Path Taken</h2>
+      <ul id="history-list"></ul>
+    </div>
+    <script src="logic_script.js"></script>
+    <div id="app">
+      <h1>EDRexpress</h1>
+      <input type="text" id="search" placeholder="Search..." />
+      <div id="search-results"></div>
+      <div id="question"></div>
+      <div id="choices"></div>
     <button id="restart">Restart</button>
-  </div>
-  <script src="logic_script.js"></script>
+    
+</div>
 </body>
 </html>
