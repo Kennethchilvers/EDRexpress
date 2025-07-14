@@ -8,6 +8,7 @@ body {
   background-color: #f9f9f9;
 }
 
+/* Top Bar with Title and Search */
 #top-bar {
   display: flex;
   justify-content: space-between;
@@ -29,6 +30,7 @@ body {
   width: 200px;
 }
 
+/* Main content centered */
 #main-content {
   display: flex;
   justify-content: center;
@@ -65,17 +67,24 @@ body {
   background-color: #005fa3;
 }
 
+/* History at bottom */
 #history-bar {
   background-color: #f0f0f0;
-  padding: 10px;
+  padding: 10px 20px;
   text-align: center;
   border-top: 1px solid #ccc;
+}
+
+#history-bar h2 {
+  margin: 0 0 10px;
 }
 
 #history-list {
   list-style: none;
   padding: 0;
   margin: 0;
+  display: inline-block;
+  text-align: left;
 }
 
 #history-list li {
@@ -83,6 +92,7 @@ body {
   font-size: 14px;
 }
 
+/* Search Results Dropdown */
 #search-results {
   position: absolute;
   right: 20px;
@@ -114,6 +124,7 @@ mark {
   font-weight: bold;
 }
 
+/* Restart Button in bottom-left corner */
 #restart {
   position: fixed;
   bottom: 10px;
