@@ -1,86 +1,94 @@
 let data = {};
-let currentNode = "start";
 let history = [];
 
-window.onload = async () => {
+function getContentFile() {
+  const params = new URLSearchParams(window.location.search);
+  return params.get('content') || 'Content.json';
+}
+
+window.addEventListener("DOMContentLoaded", async () => {
+  const contentFile = getContentFile();
+
   try {
-    data = await fetch("Content.json").then(res => res.json());
-    document.getElementById("restart").onclick = () => {
-      history = [];
-      loadNode("start");
-    };
-    document.getElementById("search").oninput = searchNodes;
-    loadNode("start");
+    const response = await fetch(contentFile);
+    if (!response.ok) throw new Error(`HTTP error ${response.status}`);
+    data = await response.json();
   } catch (err) {
-    document.getElementById("question").textContent = "Error loading content.";
-    console.error("Failed to load Content.json", err);
+    console.error("Failed to load content file:", err);
+    return;
   }
-};
 
-function loadNode(nodeKey) {
-  const node = data[nodeKey];
-  if (!node) return;
+  const restartBtn = document.getElementById("restart");
+  if (restartBtn) {
+    restartBtn.onclick = () => location.href = 'landing.html';
+  }
 
-  currentNode = nodeKey;
+  document.getElementById("search").oninput = searchNodes;
 
-  document.getElementById("question").textContent = node.question;
+  const startNode = data["start"];
+  if (startNode) {
+    history = [{ question: startNode.question, answer: "Start" }];
+    updateHistory();
+    loadNode("start");
+  } else {
+    document.getElementById("question").innerText = "Error: 'start' node not found.";
+  }
+});
 
+function loadNode(id) {
+  const node = data[id];
+  if (!node) {
+    console.warn(`Node '${id}' not found`);
+    return;
+  }
+
+  document.getElementById("question").innerText = node.question;
   const choicesDiv = document.getElementById("choices");
   choicesDiv.innerHTML = "";
 
-  for (const [text, target] of Object.entries(node.choices)) {
+  node.choices?.forEach(choice => {
     const btn = document.createElement("button");
-    btn.textContent = text;
+    btn.innerText = choice.text;
     btn.onclick = () => {
-      history.push({ question: node.question, answer: text });
-      loadNode(target);
+      history.push({ question: node.question, answer: choice.text });
+      updateHistory();
+      loadNode(choice.next);
     };
     choicesDiv.appendChild(btn);
-  }
-
-  updateHistory();
+  });
 }
 
 function updateHistory() {
-  const list = document.getElementById("history-list");
-  list.innerHTML = "";
-
+  const historyList = document.getElementById("history-list");
+  historyList.innerHTML = "";
   history.forEach(step => {
     const li = document.createElement("li");
-    li.innerHTML = `<strong>Q:</strong> ${step.question}<br><strong>A:</strong> ${step.answer}`;
-    list.appendChild(li);
+    li.innerText = `${step.question} → ${step.answer}`;
+    historyList.appendChild(li);
   });
 }
 
 function searchNodes() {
-  const searchQuery = document.getElementById("search").value.toLowerCase();
+  const searchInput = document.getElementById("search").value.toLowerCase();
   const resultsDiv = document.getElementById("search-results");
   resultsDiv.innerHTML = "";
 
-  if (!searchQuery) return;
+  if (!searchInput) return;
 
-  Object.entries(data).forEach(([key, node]) => {
-    const questionText = node.question.toLowerCase();
+  const matches = Object.entries(data).filter(([key, node]) =>
+    node.question.toLowerCase().includes(searchInput)
+  );
 
-    if (questionText.includes(searchQuery)) {
-      const resultItem = document.createElement("div");
-
-      const highlighted = node.question.replace(
-        new RegExp(`(${searchQuery})`, "ig"),
-        "<mark>$1</mark>"
-      );
-
-      resultItem.innerHTML = highlighted;
-      resultItem.className = "search-result";
-
-      resultItem.onclick = () => {
-        history.push({ question: node.question, answer: "(Search Jump)" });
-        loadNode(key);
-        document.getElementById("search").value = "";
-        resultsDiv.innerHTML = "";
-      };
-
-      resultsDiv.appendChild(resultItem);
-    }
+  matches.forEach(([key, node]) => {
+    const div = document.createElement("div");
+    div.className = "search-result";
+    const regex = new RegExp(`(${searchInput})`, "gi");
+    div.innerHTML = node.question.replace(regex, "<mark>$1</mark>");
+    div.onclick = () => {
+      loadNode(key);
+      document.getElementById("search").value = "";
+      resultsDiv.innerHTML = "";
+    };
+    resultsDiv.appendChild(div);
   });
 }

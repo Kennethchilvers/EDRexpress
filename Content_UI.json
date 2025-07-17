@@ -1,0 +1,10 @@
+{
+  "start": {
+    "question": "This is for UI portal content tbd",
+    "keywords": [],
+    "choices": [
+      {"text": "ui tbd", "next": "ui1"},
+      {"text": "ui tbd", "next": "ui2"}
+    ]
+  }
+}

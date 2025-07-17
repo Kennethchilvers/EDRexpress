@@ -1,0 +1,10 @@
+{
+  "start": {
+    "question": "This is for Integration issue content tbd",
+    "keywords": [],
+    "choices": [
+      {"text": "autotask", "next": "at1"},
+      {"text": "rmm", "next": "rmm1"}
+    ]
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "start": {
+    "question": "This is for agent issues content tbd",
+    "keywords": [],
+    "choices": [
+      {"text": "inactive", "next": "agent1"},
+      {"text": "uninstall", "next": "agent2"}
+    ]
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "start": {
+    "question": "This is for Sev1 content tbd",
+    "keywords": [],
+    "choices": [
+      {"text": "ransomware", "next": "ransomware1"},
+      {"text": "other sev1 lol", "next": "sev11"}
+    ]
+  }
+}
