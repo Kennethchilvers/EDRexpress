@@ -31,6 +31,7 @@ body {
   align-items: center;
   flex-grow: 1;
   padding: 20px;
+  padding-bottom: 180px; 
 }
 
 #question-area {
@@ -62,17 +63,27 @@ body {
 }
 
 /* History at bottom */
+#history-wrapper {
+  position: fixed;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80%;
+  z-index: 1000;
+  text-align: center;
+}
+
 #history-bar {
+  background-color: #f0f0f0;
+  border-top: 1px solid #ccc;
+  border-radius: 8px 8px 0 0;
   max-height: 150px;
   overflow-y: auto;
-  width: 80%;
   transition: max-height 0.3s ease, opacity 0.3s ease;
-  border-radius: 8px;
-  background-color: #f0f0f0;
+  opacity: 1;
+  width: 80%;
   padding: 10px 20px;
   text-align: center;
-  border-top: 1px solid #ccc;
-  opacity: 1;
 }
 #history-bar h2 {
   margin: 0 0 10px;

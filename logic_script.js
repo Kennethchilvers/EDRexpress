@@ -40,7 +40,9 @@ window.addEventListener("DOMContentLoaded", async () => {
 
   const startNode = data["start"];
   if (startNode) {
-    history = [{ question: startNode.question, answer: "Start" }];
+    const params = new URLSearchParams(window.location.search);
+    const issueText = params.get("issue") || "Unknown Issue";
+    history = [{ question: "Issue selection", answer: issueText }];
     updateHistory();
     loadNode("start");
   } else {
@@ -55,7 +57,7 @@ function loadNode(id) {
     return;
   }
 
-  document.getElementById("question").innerText = node.question;
+  document.getElementById("question").innerHTML = node.question;
   const choicesDiv = document.getElementById("choices");
   choicesDiv.innerHTML = "";
 

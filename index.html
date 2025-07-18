@@ -43,16 +43,18 @@
 <body>
   <div class="landing-container">
     <h1>Select Issue Type</h1>
-    <button class="option-button" onclick="loadContent('Content_sev1.json')">Sev1</button>
-    <button class="option-button" onclick="loadContent('Content_login.json')">Login Issue</button>
-    <button class="option-button" onclick="loadContent('Content_agent.json')">Agent Issue</button>
-    <button class="option-button" onclick="loadContent('Content_integration.json')">Integration Issue</button>
-    <button class="option-button" onclick="loadContent('Content_portal.json')">UI Portal Issue</button>
+    <button class="option-button" onclick="loadContent('Content_sev1.json', 'Sev1')">Sev1</button>
+    <button class="option-button" onclick="loadContent('Content_login.json', 'Login Issue')">Login Issue</button>
+    <button class="option-button" onclick="loadContent('Content_agent.json', 'Agent Issue')">Agent Issue</button>
+    <button class="option-button" onclick="loadContent('Content_integration.json', 'Integration Issue')">Integration Issue</button>
+    <button class="option-button" onclick="loadContent('Content_portal.json', 'UI/Portal Issue')">UI Portal Issue</button>
   </div>
 
   <script>
-    function loadContent(fileName) {
-      window.location.href = `adventure.html?content=${encodeURIComponent(fileName)}`;
+    function loadContent(fileName, issueLabel) {
+      const encodedFile = encodeURIComponent(fileName);
+      const encodedIssue = encodeURIComponent(issueLabel);
+      window.location.href = `adventure.html?content=${encodedFile}&issue=${encodedIssue}`;
     }
   </script>
 </body>
