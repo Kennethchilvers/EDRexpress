@@ -11,7 +11,6 @@
   <!-- Top Bar -->
   <div id="top-bar">
     <div id="title"><a href="adventure.html">EDRexpress</a></div>
-    <input type="text" id="search" placeholder="Search..." />
   </div>
 
   <!-- Main Content Area -->
@@ -23,13 +22,22 @@
   </div>
 
   <!-- History Bar at Bottom -->
-  <div id="history-bar">
-    <h2>Path Taken</h2>
-    <ul id="history-list"></ul>
+  <div id="history-container">
+  <button id="toggle-history">Hide Path</button>
+    <div id="history-bar">
+      <h2>Path Taken</h2>
+      <ul id="history-list"></ul>
+    </div>
   </div>
 
-  <!-- Search Results Popup -->
-  <div id="search-results"></div>
+<!-- Collapsible Search Panel -->
+<div id="search-container">
+  <button id="toggle-search">Search</button>
+  <div id="search-panel" class="collapsed">
+    <input type="text" id="search" placeholder="Search..." />
+    <div id="search-results"></div>
+  </div>
+</div>
 
   <!-- Restart Button -->
   <button id="restart">Restart</button>

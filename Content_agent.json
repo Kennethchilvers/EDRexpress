@@ -1,10 +1,76 @@
 {
   "start": {
-    "question": "This is for agent issues content tbd",
+    "question": "This is for agent issues, the content here is just filler for testing",
     "keywords": [],
     "choices": [
-      {"text": "inactive", "next": "agent1"},
-      {"text": "uninstall", "next": "agent2"}
+      { "text": "inactive", "next": "agent1" },
+      { "text": "uninstall", "next": "agent2" }
     ]
+  },
+  "agent1": {
+    "question": "Agent is inactive. Choose next step.Agent is inactive. Choose next step.Agent is inactive. Choose next step.Agent is inactive. Choose next step.Agent is inactive. Choose next step.Agent is inactive. Choose next step.Agent is inactive. Choose next step.Agent is inactive. Choose next step.Agent is inactive. Choose next step.Agent is inactive. Choose next step.Agent is inactive. Choose next step.Agent is inactive. Choose next step.Agent is inactive. Choose next step.Agent is inactive. Choose next step.Agent is inactive. Choose next step.Agent is inactive. Choose next step.Agent is inactive. Choose next step.Agent is inactive. Choose next step.Agent is inactive. Choose next step.Agent is inactive. Choose next step.Agent is inactive. Choose next step.Agent is inactive. Choose next step.Agent is inactive. Choose next step.Agent is inactive. Choose next step.Agent is inactive. Choose next step.Agent is inactive. Choose next step.Agent is inactive. Choose next step.Agent is inactive. Choose next step.Agent is inactive. Choose next step.Agent is inactive. Choose next step.Agent is inactive. Choose next step.Agent is inactive. Choose next step.Agent is inactive. Choose next step.Agent is inactive. Choose next step.Agent is inactive. Choose next step.Agent is inactive. Choose next step.Agent is inactive. Choose next step.Agent is inactive. Choose next step.Agent is inactive. Choose next step.Agent is inactive. Choose next step.Agent is inactive. Choose next step.Agent is inactive. Choose next step.Agent is inactive. Choose next step.Agent is inactive. Choose next step.Agent is inactive. Choose next step.Agent is inactive. Choose next step.Agent is inactive. Choose next step.Agent is inactive. Choose next step.Agent is inactive. Choose next step.Agent is inactive. Choose next step.Agent is inactive. Choose next step.Agent is inactive. Choose next step.Agent is inactive. Choose next step.Agent is inactive. Choose next step.Agent is inactive. Choose next step.Agent is inactive. Choose next step.",
+    "keywords": [],
+    "choices": [
+      { "text": "Restart service", "next": "agent1a" },
+      { "text": "Check logs", "next": "agent1b" }
+    ]
+  },
+  "agent1a": {
+    "question": "Service restarted. Did this fix the issue?",
+    "keywords": [],
+    "choices": [
+      { "text": "Yes", "next": "resolved" },
+      { "text": "No", "next": "agent1b" }
+    ]
+  },
+  "agent1b": {
+    "question": "Logs show error code 1234. Proceed?",
+    "keywords": [],
+    "choices": [
+      { "text": "Reinstall agent", "next": "agent3" },
+      { "text": "Escalate to Tier 2", "next": "escalate" }
+    ]
+  },
+  "agent2": {
+    "question": "Uninstallation path selected. Choose reason.",
+    "keywords": [],
+    "choices": [
+      { "text": "Corrupt install", "next": "agent2a" },
+      { "text": "Old version", "next": "agent2b" }
+    ]
+  },
+  "agent2a": {
+    "question": "Try force uninstall using script A. Success?",
+    "keywords": [],
+    "choices": [
+      { "text": "Success", "next": "resolved" },
+      { "text": "Failure", "next": "agent3" }
+    ]
+  },
+  "agent2b": {
+    "question": "Install latest agent version. Proceed?",
+    "keywords": [],
+    "choices": [
+      { "text": "Install complete", "next": "resolved" },
+      { "text": "Error during install", "next": "agent3" }
+    ]
+  },
+  "agent3": {
+    "question": "Manual intervention required. Try alternate script?",
+    "keywords": [],
+    "choices": [
+      { "text": "Try script B", "next": "resolved" },
+      { "text": "Abort process", "next": "escalate" }
+    ]
+  },
+  "resolved": {
+    "question": "Issue resolved. End of path.",
+    "keywords": [],
+    "choices": []
+  },
+  "escalate": {
+    "question": "Please escalate to Tier 2 support.",
+    "keywords": [],
+    "choices": []
   }
 }

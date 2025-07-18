@@ -23,7 +23,20 @@ window.addEventListener("DOMContentLoaded", async () => {
     restartBtn.onclick = () => location.href = 'index.html';
   }
 
-  document.getElementById("search").oninput = searchNodes;
+  // Search panel toggle setup
+  const toggleSearchBtn = document.getElementById("toggle-search");
+  const searchPanel = document.getElementById("search-panel");
+  if (toggleSearchBtn && searchPanel) {
+    toggleSearchBtn.onclick = () => {
+      searchPanel.classList.toggle("expanded");
+    };
+  }
+
+  // Search input handler
+  const searchInput = document.getElementById("search");
+  if (searchInput) {
+    searchInput.oninput = searchNodes;
+  }
 
   const startNode = data["start"];
   if (startNode) {
@@ -73,11 +86,21 @@ function searchNodes() {
   const resultsDiv = document.getElementById("search-results");
   resultsDiv.innerHTML = "";
 
-  if (!searchInput) return;
+  if (!searchInput) {
+    resultsDiv.style.display = "none";
+    return;
+  }
 
   const matches = Object.entries(data).filter(([key, node]) =>
     node.question.toLowerCase().includes(searchInput)
   );
+
+  if (matches.length === 0) {
+    resultsDiv.style.display = "none";
+    return;
+  }
+
+  resultsDiv.style.display = "block";
 
   matches.forEach(([key, node]) => {
     const div = document.createElement("div");
@@ -88,7 +111,25 @@ function searchNodes() {
       loadNode(key);
       document.getElementById("search").value = "";
       resultsDiv.innerHTML = "";
+      resultsDiv.style.display = "none";
     };
     resultsDiv.appendChild(div);
   });
 }
+
+document.getElementById("toggle-history").onclick = () => {
+  const historyDiv = document.getElementById("history-bar");
+  const toggleBtn = document.getElementById("toggle-history");
+
+  if (historyDiv.style.maxHeight === "0px") {
+    historyDiv.style.maxHeight = "150px";
+    historyDiv.style.opacity = "1";
+    historyDiv.style.padding = "10px 20px";
+    toggleBtn.innerText = "Hide Path";
+  } else {
+    historyDiv.style.maxHeight = "0px";
+    historyDiv.style.opacity = "0";
+    historyDiv.style.padding = "0";
+    toggleBtn.innerText = "Show Path";
+  }
+};
