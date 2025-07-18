@@ -20,7 +20,7 @@ window.addEventListener("DOMContentLoaded", async () => {
 
   const restartBtn = document.getElementById("restart");
   if (restartBtn) {
-    restartBtn.onclick = () => location.href = 'landing.html';
+    restartBtn.onclick = () => location.href = 'index.html';
   }
 
   document.getElementById("search").oninput = searchNodes;
